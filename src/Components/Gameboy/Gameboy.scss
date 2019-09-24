@@ -1,0 +1,592 @@
+// body
+$grey: #d8d7d2;
+// $body: $grey;
+// $body: #efeff1;
+$body: #e6e6e6;
+$white: white;
+
+// screen exterior
+$darkgrey: #8b8a8f;
+$pink: #b2407e;
+$blue: #231e82;
+
+//battery light
+$batRed: #ff1343;
+$batOrange: #f7c471;
+$batPink: #ff1343;
+
+// screen interior
+$screenOrange: #8c6402;
+$screenGreen: #567e01;
+$screenMidGreen: #4c7816;
+$screenDarkGreen: #305d1a;
+
+// logo
+$nintendoBlue: #3542aa;
+
+// buttons
+$buttonPink: #a61f56;
+$buttonGrey: #828481;
+$buttonBlack: #0a1d17;
+
+@function c($value) {
+  @return $value * 90vh / 1240;
+}
+
+.Gameboy {
+  background: $body;
+  width: c(760);
+  height: c(1240);
+  border-radius: c(20) c(20) c(150);
+  box-shadow: c(4) c(4) c(4) rgba(0, 0, 0, 0.1),
+    c(-6) c(-6) c(10) rgba(white, 1) inset;
+  margin: 0 auto;
+  position: relative;
+  .Gameboy__mask {
+    pointer-events: none;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: c(760);
+    height: c(1240);
+    border-radius: c(20) c(20) c(150);
+    box-shadow: c(4) c(4) c(4) rgba(0, 0, 0, 0.1),
+      c(-6) c(-6) c(10) rgba(white, 1) inset;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: c(-20);
+      right: c(-100);
+      width: c(420);
+      height: c(120);
+      background: rgba(white, 0.3);
+      transform: rotateZ(-35deg);
+      box-shadow: c(-6) c(-6) c(10) rgba(white, 1) inset;
+      z-index: 1;
+    }
+  }
+}
+
+.Gameboy__ridges {
+  position: absolute;
+  background: $grey;
+  display: block;
+  width: c(45);
+  height: c(18);
+  box-shadow: c(-2) c(0) c(2) rgba(black, 0.1) inset,
+    c(2) c(0) c(2) rgba(black, 0.1) inset;
+  z-index: 2;
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: c(6);
+    height: c(18);
+    background: $body;
+    box-shadow: c(-2) c(-2) c(2) rgba(black, 0.1);
+    top: c(2);
+  }
+  &:before {
+    left: c(12);
+  }
+  &:after {
+    right: c(12);
+  }
+}
+
+.Gameboy__top {
+  .Gameboy__top__inner {
+    height: c(76);
+    background: $grey;
+    display: grid;
+    grid-template-columns: c(66) 1fr c(66);
+  }
+  .Gameboy__topNotch--left {
+    background: $body;
+    height: c(64);
+    margin-right: c(14);
+    box-shadow: c(2) c(2) c(2) rgba(black, 0.05),
+      c(-2) c(2) c(2) rgba(black, 0.05), c(-2) c(2) c(2) rgba(white, 0.05);
+  }
+  .Gameboy__topNotch--right {
+    background: $body;
+    height: c(64);
+    margin-left: c(14);
+    box-shadow: c(2) c(2) c(2) rgba(black, 0.05),
+      c(-2) c(2) c(2) rgba(black, 0.05), c(-2) c(2) c(2) rgba(white, 0.05);
+  }
+  .Gameboy__top__center {
+    background: $body;
+    height: c(64);
+    text-align: left;
+    position: relative;
+    box-shadow: c(2) c(2) c(2) rgba(black, 0.05),
+      c(-2) c(2) c(2) rgba(black, 0.05), c(-2) c(2) c(2) rgba(white, 0.05);
+    .Gameboy__ridges {
+      top: c(0);
+      left: c(28);
+      z-index: 3;
+      box-shadow: c(-2) c(2) c(2) rgba(black, 0.05) inset,
+        c(2) c(2) c(2) rgba(black, 0.05) inset;
+      &:before,
+      &:after {
+        top: c(-2);
+      }
+    }
+  }
+  .Gameboy__onOffLabel {
+    cursor: pointer;
+    color: $body;
+    background: $grey;
+    display: inline-block;
+    border-radius: c(20);
+    padding: c(4) c(12);
+    margin: c(14) 0 0 c(14);
+    font-size: c(24);
+    text-transform: uppercase;
+    text-shadow: c(-2) c(-2) c(2) rgba(0, 0, 0, 0.05);
+    box-shadow: c(-2) c(-2) c(2) rgba(black, 0.05) inset;
+    position: relative;
+  }
+  .Gameboy__onOffSwitch {
+    cursor: pointer;
+    width: c(45);
+    height: c(10);
+    background: $darkgrey;
+    position: absolute;
+    top: c(-10);
+    left: c(86);
+    transition: 50ms;
+    border-radius: c(10) c(10) 0 0;
+    box-shadow: c(-2) c(-2) c(2) rgba(black, 0.1) inset;
+    &:before {
+      display: block;
+      content: "";
+      width: c(20);
+      height: c(4);
+      background: $darkgrey;
+      position: absolute;
+      top: c(-4);
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: c(10) c(10) 0 0;
+      box-shadow: c(-2) c(-2) c(2) rgba(black, 0.1) inset;
+    }
+  }
+}
+
+.Gameboy__body {
+  padding: c(35) c(52) 0;
+  box-shadow: c(0) c(-2) c(2) rgba(black, 0.1),
+    c(0) c(2) c(2) rgba(white, 0.05) inset;
+  .Gameboy__screen {
+    padding: c(60) c(120);
+    width: 100%;
+    box-sizing: border-box;
+    background: $darkgrey;
+    border: c(2) solid darken($darkgrey, 0.3);
+    box-shadow: 0 0 c(2) darken($darkgrey, 0.5);
+    border-radius: c(15) c(15) c(100);
+    position: relative;
+    color: $white;
+    text-transform: uppercase;
+    font-size: c(17);
+  }
+  .Gameboy__screenHeader {
+    position: absolute;
+    top: c(20);
+    left: 0;
+    width: calc(100% - #{c(40)});
+    margin: 0 c(20);
+    height: c(20);
+    border-top: c(4) solid $pink;
+    border-bottom: c(4) solid $blue;
+    box-sizing: border-box;
+  }
+  .Gameboy__screenHeaderText {
+    position: absolute;
+    right: c(86);
+    top: c(-4);
+    height: c(20);
+    padding: 0 c(14);
+    background: $darkgrey;
+  }
+  .Gameboy__screenInner {
+    overflow: hidden;
+    position: relative;
+    background: $screenGreen;
+    height: c(375);
+    box-sizing: border-box;
+    border-top: c(6) solid rgba($screenOrange, 0.5);
+    border-left: c(8) solid rgba($screenOrange, 0.7);
+    box-shadow: inset c(-10) c(-8) c(10) rgba(0, 0, 0, 0.1);
+    text-transform: none;
+    .Gameboy__screenDeadPixels {
+      position: absolute;
+      top: 20%;
+      left: c(8);
+      right: c(20);
+      height: c(2);
+      background: $screenGreen;
+      z-index: 2;
+      opacity: 0.3;
+      &:nth-child(2) {
+        top: 50%;
+      }
+      &:nth-child(3) {
+        top: 1%;
+      }
+    }
+  }
+  .Gameboy__battery {
+    position: absolute;
+    top: c(174);
+    left: 0;
+    width: c(120);
+    text-align: center;
+  }
+  .Gameboy__batteryDot {
+    background: darken($darkgrey, 20%);
+    box-shadow: c(-2) c(-2) c(4) rgba(black, 0.1) inset;
+    transition: 400ms;
+    width: c(26);
+    height: c(26);
+    margin: 0 auto c(17);
+    border-radius: c(26);
+    position: relative;
+    &:before {
+      transition: 400ms;
+      content: "";
+      display: block;
+      background: rgba($white, 0.05);
+      box-shadow: 2 2 c(13) rgba($white, 0.5);
+      width: c(4);
+      height: c(4);
+      border-radius: c(13);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+}
+
+.Gameboy__logo {
+  padding-top: c(14);
+  color: $nintendoBlue;
+  font-size: c(27);
+  font-weight: bold;
+  .Gameboy__logoGB {
+    letter-spacing: c(-1);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: c(40);
+  }
+  .Gameboy__logoTM {
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: c(16);
+    margin-left: c(-4);
+  }
+}
+
+.Gameboy__controls {
+  margin-top: c(85);
+  height: c(240);
+  position: relative;
+  .Gameboy__dpad {
+    width: c(240);
+    height: c(240);
+    background: $grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: c(240);
+    box-shadow: c(4) c(4) c(10) rgba(white, 0.2) inset,
+      c(-4) c(-4) c(10) rgba(black, 0.05) inset;
+  }
+  .Gameboy__buttons {
+    width: c(270);
+    height: c(130);
+    transform: rotateZ(-25deg);
+    margin-top: c(34);
+    background: $grey;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: c(65);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    box-shadow: c(4) c(4) c(10) rgba(white, 0.2) inset,
+      c(4) c(4) c(10) rgba(black, 0.1) inset;
+  }
+  .Gameboy__button {
+    width: c(90);
+    height: c(90);
+    position: relative;
+    background: $buttonPink;
+    border-radius: c(45);
+    margin: 0 auto;
+    box-shadow: c(-2) c(-2) c(4) black, c(-4) c(-4) c(2) rgba(white, 0.2) inset;
+  }
+  .Gameboy__buttonLabel {
+    position: absolute;
+    top: c(90) + c(28);
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: $nintendoBlue;
+    font-size: c(26);
+  }
+}
+
+.Gameboy__options {
+  transform: rotateZ(-25deg);
+  width: c(230);
+  margin: c(30) auto;
+  position: relative;
+  left: c(-40);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .Gameboy__option {
+    width: c(120);
+    height: c(50);
+    background: $grey;
+    border-radius: c(50);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: c(4) c(4) c(10) rgba(white, 0.2) inset,
+      c(4) c(4) c(10) rgba(black, 0.1) inset;
+  }
+  .Gameboy__option:nth-child(2) {
+    margin-top: c(50);
+  }
+  .Gameboy__optionButton {
+    width: c(90);
+    height: c(24);
+    background: $buttonGrey;
+    border-radius: c(24);
+    box-shadow: c(-2) c(-2) c(4) black, c(-4) c(-8) c(10) rgba(white, 0.2) inset;
+  }
+  .Gameboy__optionLabel {
+    position: absolute;
+    top: c(50) + c(8);
+    color: $nintendoBlue;
+    font-size: c(26);
+    text-transform: uppercase;
+    font-weight: bold;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.Gameboy__sound {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: c(230);
+  transform: rotateZ(-30deg);
+  position: absolute;
+  bottom: c(70);
+  right: c(30);
+  z-index: 2;
+}
+
+.Gameboy__soundSlot {
+  width: c(20);
+  height: c(120);
+  border-radius: c(20);
+  box-shadow: c(0) c(-2) c(4) rgba(black, 0.5) inset;
+  position: relative;
+  &:not(:first-child) {
+    &:before {
+      position: absolute;
+      content: "";
+      width: c(2);
+      height: c(100);
+      border-radius: c(2);
+      background: black;
+      opacity: 0.7;
+      top: c(10);
+      left: c(2);
+    }
+  }
+}
+
+.Gameboy__phones {
+  color: $body;
+  background: $grey;
+  display: block;
+  border-radius: c(20);
+  padding: c(4) c(12);
+  margin: c(14) 0 0 c(14);
+  font-size: c(20);
+  text-transform: uppercase;
+  text-shadow: c(-2) c(-2) c(2) rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: c(16);
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: c(4) c(4) c(10) rgba(white, 0.2) inset,
+    c(-2) c(-2) c(2) rgba(black, 0.1) inset;
+  .Gameboy__ridges {
+    bottom: c(-16);
+    right: c(10);
+  }
+}
+
+.Gameboy__dpadButton {
+  background: $buttonBlack;
+  width: c(60);
+  height: c(60);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.Gameboy__dpadButton--up {
+  transform: translateX(-50%) translateY(-145%);
+  border-radius: c(8) c(8) 0 0;
+  &:before {
+    content: "\25B2";
+    position: absolute;
+    left: 50%;
+    top: c(-30);
+    transform: translateX(-50%);
+    font-size: c(24);
+    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
+    color: $body;
+  }
+}
+.Gameboy__dpadButton--down {
+  transform: translateX(-50%) translateY(45%);
+  border-radius: 0 0 c(8) c(8);
+  &:before {
+    content: "\25BC";
+    position: absolute;
+    left: 50%;
+    bottom: c(-30);
+    transform: translateX(-50%);
+    font-size: c(24);
+    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
+    color: $body;
+  }
+}
+.Gameboy__dpadButton--left {
+  transform: translateX(-145%) translateY(-50%);
+  border-radius: c(8) 0 c(8) 0;
+  &:before {
+    content: "\25C0	";
+    position: absolute;
+    top: 50%;
+    left: c(-26);
+    transform: translateY(-50%);
+    font-size: c(24);
+    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
+    color: $body;
+  }
+}
+.Gameboy__dpadButton--right {
+  transform: translateX(45%) translateY(-50%);
+  border-radius: 0 c(8) c(8) 0;
+  &:before {
+    content: "\25B6";
+    position: absolute;
+    top: 50%;
+    right: c(-26);
+    transform: translateY(-50%);
+    font-size: c(24);
+    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
+    color: $body;
+  }
+}
+
+.Gameboy__dpadButton--left,
+.Gameboy__dpadButton--right {
+  .Gameboy__dpad__bump {
+    width: c(12);
+    height: c(42);
+    display: inline-block;
+    box-shadow: c(-2) c(-2) c(4) black, c(-4) c(-8) c(10) rgba(white, 0.2) inset;
+    margin: c(8) c(4);
+    border-radius: c(4);
+    opacity: 0.2;
+  }
+}
+
+.Gameboy__dpadButton--up,
+.Gameboy__dpadButton--down {
+  .Gameboy__dpad__bump {
+    width: c(42);
+    height: c(12);
+    box-shadow: c(-2) c(-2) c(4) black, c(-4) c(-8) c(10) rgba(white, 0.2) inset;
+    margin: c(4) auto;
+    border-radius: c(4);
+    opacity: 0.2;
+  }
+}
+
+.Gameboy__dpad__divet {
+  width: c(42);
+  height: c(42);
+  box-shadow: c(-2) c(-2) c(4) black, c(4) c(8) c(10) rgba(white, 0.2) inset;
+  border-radius: c(42);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 0.2;
+}
+
+.Gameboy__gameLogo {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: c(44);
+  color: $screenDarkGreen;
+  font-weight: bold;
+  transition: top 0ms linear 300ms, opacity 200ms 100ms;
+  opacity: 0;
+}
+
+.Gameboy--on {
+  .Gameboy__top {
+    .Gameboy__onOffSwitch {
+      transform: translateX(c(14));
+    }
+  }
+  .Gameboy__body {
+    .Gameboy__batteryDot {
+      background: $batRed;
+      box-shadow: 0 0 c(6) lighten($batRed, 10%);
+      animation-name: lightblink;
+      animation-duration: 0.6s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      &:before {
+        background: rgba($batOrange, 0.1);
+        box-shadow: 0 0 c(13) $batPink;
+      }
+    }
+  }
+  .Gameboy__gameLogo {
+    top: 50%;
+    opacity: 1;
+    transition: top 3000ms linear, opacity 0ms linear;
+  }
+}
+
+@keyframes lightblink {
+  from {
+    box-shadow: 0 0 c(4) lighten($batRed, 10%);
+  }
+  to {
+    box-shadow: 0 0 c(10) lighten($batRed, 18%);
+  }
+}
