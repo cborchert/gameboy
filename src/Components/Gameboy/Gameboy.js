@@ -1,5 +1,6 @@
 import React from "react";
 import TitleScreen from "../../images/title.png";
+import Sparkle from "../../images/sparkle.png";
 import "./Gameboy.scss";
 
 // Intro
@@ -83,10 +84,22 @@ const Gameboy = () => {
                   stage === 2 ? "Gameboy__stageTwo--active" : ""
                 }`}
               >
-                <div className="sparkle sparkle--1"></div>
-                <div className="sparkle sparkle--2"></div>
-                <div className="sparkle sparkle--3"></div>
-                <div className="sparkle sparkle--4"></div>
+                <div
+                  className="sparkle sparkle--1"
+                  style={{ backgroundImage: Sparkle }}
+                />
+                <div
+                  className="sparkle sparkle--2"
+                  style={{ backgroundImage: Sparkle }}
+                />
+                <div
+                  className="sparkle sparkle--3"
+                  style={{ backgroundImage: Sparkle }}
+                />
+                <div
+                  className="sparkle sparkle--4"
+                  style={{ backgroundImage: Sparkle }}
+                />
                 <img
                   src={TitleScreen}
                   className="stage__background"
