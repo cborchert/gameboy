@@ -9,11 +9,15 @@ import "./Gameboy.scss";
 //GB hidef
 //https://o.aolcdn.com/images/dims?quality=85&image_uri=https%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fresize%3D2000%252C2000%252Cshrink%26image_uri%3Dhttps%253A%252F%252Fs.yimg.com%252Fos%252Fcreatr-uploaded-images%252F2019-04%252Fb074a210-62e4-11e9-bf3d-5337ddc3269f%26client%3Da1acac3e1b3290917d92%26signature%3D6e437b6716eefc36dfbf680c4ede3bf623e3063f&client=amp-blogside-v2&signature=b7a594a04c63167038ae58d4acb4868afa34b004
 //https://static.cnews.fr/sites/default/files/styles/image_640_360/public/nintendo_gameboy.jpg?itok=bl4SjE-k
+//Enter Code
+//https://www.youtube.com/watch?v=NYlMc638Yq0
 const Gameboy = () => {
   const [on, setOn] = React.useState(false);
   return (
     <div className={`Gameboy${on ? " Gameboy--on" : ""}`}>
-      <div className="Gameboy__mask"></div>
+      <div className="Gameboy__mask">
+        <div className="Gameboy__mask__body" />
+      </div>
       <div className="Gameboy__top">
         <div className="Gameboy__top__inner">
           <div className="Gameboy__topNotch Gameboy__topNotch--left" />

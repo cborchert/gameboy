@@ -34,12 +34,9 @@ $buttonBlack: #0a1d17;
 }
 
 .Gameboy {
-  background: $body;
   width: c(760);
   height: c(1240);
   border-radius: c(20) c(20) c(150);
-  box-shadow: c(4) c(4) c(4) rgba(0, 0, 0, 0.1),
-    c(-6) c(-6) c(10) rgba(white, 1) inset;
   margin: 0 auto;
   position: relative;
   .Gameboy__mask {
@@ -51,8 +48,7 @@ $buttonBlack: #0a1d17;
     width: c(760);
     height: c(1240);
     border-radius: c(20) c(20) c(150);
-    box-shadow: c(4) c(4) c(4) rgba(0, 0, 0, 0.1),
-      c(-6) c(-6) c(10) rgba(white, 1) inset;
+
     &:after {
       content: "";
       position: absolute;
@@ -62,8 +58,17 @@ $buttonBlack: #0a1d17;
       height: c(120);
       background: rgba(white, 0.3);
       transform: rotateZ(-35deg);
-      box-shadow: c(-6) c(-6) c(10) rgba(white, 1) inset;
       z-index: 1;
+      box-shadow: c(-6) c(-6) c(10) rgba(white, 1) inset;
+    }
+    .Gameboy__mask__body {
+      box-shadow: c(4) c(4) c(4) rgba(0, 0, 0, 0.1),
+        c(-6) c(-6) c(10) rgba(white, 1) inset;
+      margin-top: c(73);
+      background: $body;
+      height: c(1240) - c(73);
+      border-radius: c(3) c(3) c(150) c(20);
+      box-sizing: border-box;
     }
   }
 }
@@ -98,27 +103,44 @@ $buttonBlack: #0a1d17;
 
 .Gameboy__top {
   .Gameboy__top__inner {
-    height: c(76);
+    height: c(73);
+    width: c(760) - c(6);
+    margin: 0 auto;
+    border-radius: c(20) c(20) 0 0;
+    box-shadow: c(0) c(2) c(2) rgba(black, 0.05) inset,
+      c(0) c(-2) c(2) rgba(black, 0.05) inset;
     background: $grey;
-    display: grid;
-    grid-template-columns: c(66) 1fr c(66);
+    position: relative;
   }
   .Gameboy__topNotch--left {
     background: $body;
+    position: absolute;
+    border-radius: c(20) c(3) c(3) c(3);
+    top: c(-3);
+    left: c(-3);
+    width: c(66);
     height: c(64);
-    margin-right: c(14);
     box-shadow: c(2) c(2) c(2) rgba(black, 0.05),
       c(-2) c(2) c(2) rgba(black, 0.05), c(-2) c(2) c(2) rgba(white, 0.05);
   }
   .Gameboy__topNotch--right {
     background: $body;
+    position: absolute;
+    border-radius: c(3) c(20) c(3) c(3);
+    top: c(-3);
+    right: c(-3);
+    width: c(66);
     height: c(64);
-    margin-left: c(14);
     box-shadow: c(2) c(2) c(2) rgba(black, 0.05),
       c(-2) c(2) c(2) rgba(black, 0.05), c(-2) c(2) c(2) rgba(white, 0.05);
   }
   .Gameboy__top__center {
     background: $body;
+    border-radius: c(3);
+    position: absolute;
+    top: c(-3);
+    width: c(760) - 2 * c(66) - 2 * c(14);
+    margin: 0 auto;
     height: c(64);
     text-align: left;
     position: relative;
@@ -156,8 +178,8 @@ $buttonBlack: #0a1d17;
     height: c(10);
     background: $darkgrey;
     position: absolute;
-    top: c(-10);
-    left: c(86);
+    top: c(-13);
+    left: c(100);
     transition: 50ms;
     border-radius: c(10) c(10) 0 0;
     box-shadow: c(-2) c(-2) c(2) rgba(black, 0.1) inset;
@@ -236,7 +258,7 @@ $buttonBlack: #0a1d17;
         top: 50%;
       }
       &:nth-child(3) {
-        top: 1%;
+        top: 47%;
       }
     }
   }
@@ -481,7 +503,7 @@ $buttonBlack: #0a1d17;
   transform: translateX(-145%) translateY(-50%);
   border-radius: c(8) 0 c(8) 0;
   &:before {
-    content: "\25C0	";
+    content: "\25C0";
     position: absolute;
     top: 50%;
     left: c(-26);
@@ -495,7 +517,7 @@ $buttonBlack: #0a1d17;
   transform: translateX(45%) translateY(-50%);
   border-radius: 0 c(8) c(8) 0;
   &:before {
-    content: "\25B6";
+    content: "\25BA";
     position: absolute;
     top: 50%;
     right: c(-26);
