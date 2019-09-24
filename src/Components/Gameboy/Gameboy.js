@@ -1,4 +1,5 @@
 import React from "react";
+import TitleScreen from "../../images/title.png";
 import "./Gameboy.scss";
 
 // Intro
@@ -13,6 +14,22 @@ import "./Gameboy.scss";
 //https://www.youtube.com/watch?v=NYlMc638Yq0
 const Gameboy = () => {
   const [on, setOn] = React.useState(false);
+  const [stage, setStage] = React.useState(0);
+  const timer = React.useRef(null);
+  const initGame = () => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    setOn(true);
+    setStage(1);
+    timer.current = setTimeout(() => setStage(2), 4300);
+  };
+  const turnOff = () => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    setOn(false);
+  };
   return (
     <div className={`Gameboy${on ? " Gameboy--on" : ""}`}>
       <div className="Gameboy__mask">
@@ -26,7 +43,7 @@ const Gameboy = () => {
             <div
               className="Gameboy__onOffLabel"
               onClick={() => {
-                on ? setOn(false) : setOn(true);
+                on ? turnOff() : initGame();
               }}
             >
               &#9664; Off &#9679; On &#9658;
@@ -38,7 +55,7 @@ const Gameboy = () => {
         <div
           className="Gameboy__onOffSwitch"
           onClick={() => {
-            on ? setOn(false) : setOn(true);
+            on ? turnOff() : initGame();
           }}
         />
       </div>
@@ -53,7 +70,30 @@ const Gameboy = () => {
             <div className="Gameboy__screenDeadPixels" />
             <div className="Gameboy__screenDeadPixels" />
             <div className="Gameboy__screenDeadPixels" />
-            <div className="Gameboy__gameLogo">Nintendo®</div>
+            <div className="Gameboy__screenInner__content">
+              <div
+                className={`Gameboy__stageOne ${
+                  stage === 1 ? "Gameboy__stageOne--active" : ""
+                }`}
+              >
+                Nintendo®
+              </div>
+              <div
+                className={`Gameboy__stageTwo ${
+                  stage === 2 ? "Gameboy__stageTwo--active" : ""
+                }`}
+              >
+                <div className="sparkle sparkle--1"></div>
+                <div className="sparkle sparkle--2"></div>
+                <div className="sparkle sparkle--3"></div>
+                <div className="sparkle sparkle--4"></div>
+                <img
+                  src={TitleScreen}
+                  className="stage__background"
+                  alt="title screen"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="Gameboy__battery">
