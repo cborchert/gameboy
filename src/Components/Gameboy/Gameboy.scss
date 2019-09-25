@@ -203,6 +203,13 @@ $buttonBlack: #0a1d17;
   padding: c(35) c(52) 0;
   box-shadow: c(0) c(-2) c(2) rgba(black, 0.1),
     c(0) c(2) c(2) rgba(white, 0.05) inset;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  margin-top: c(73);
   .Gameboy__screen {
     padding: c(60) c(120);
     width: 100%;
@@ -457,7 +464,7 @@ $buttonBlack: #0a1d17;
   text-transform: uppercase;
   text-shadow: c(-2) c(-2) c(2) rgba(0, 0, 0, 0.1);
   position: absolute;
-  bottom: c(16);
+  bottom: c(14);
   left: 50%;
   transform: translateX(-50%);
   box-shadow: c(4) c(4) c(10) rgba(white, 0.2) inset,
@@ -675,5 +682,33 @@ $buttonBlack: #0a1d17;
   }
   to {
     background-position: c(-2000 * 2/3) - c(20 * 2/3);
+  }
+}
+
+.Gameboy__stageTwo__pressStart {
+  position: absolute;
+  bottom: c(4);
+  color: black;
+  font-size: c(24);
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+  left: 0;
+  right: 0;
+  animation: blink infinite 2000ms;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  50.1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }

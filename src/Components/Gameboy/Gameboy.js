@@ -35,6 +35,14 @@ const Gameboy = () => {
     <div className={`Gameboy${on ? " Gameboy--on" : ""}`}>
       <div className="Gameboy__mask">
         <div className="Gameboy__mask__body" />
+        <div className="Gameboy__sound">
+          <div className="Gameboy__soundSlot" />
+          <div className="Gameboy__soundSlot" />
+          <div className="Gameboy__soundSlot" />
+          <div className="Gameboy__soundSlot" />
+          <div className="Gameboy__soundSlot" />
+          <div className="Gameboy__soundSlot" />
+        </div>
       </div>
       <div className="Gameboy__top">
         <div className="Gameboy__top__inner">
@@ -105,6 +113,7 @@ const Gameboy = () => {
                   className="stage__background"
                   alt="title screen"
                 />
+                <div className="Gameboy__stageTwo__pressStart">Press Start</div>
               </div>
             </div>
           </div>
@@ -162,14 +171,6 @@ const Gameboy = () => {
             <div className="Gameboy__optionButton" />
             <div className="Gameboy__optionLabel">start</div>
           </div>
-        </div>
-        <div className="Gameboy__sound">
-          <div className="Gameboy__soundSlot" />
-          <div className="Gameboy__soundSlot" />
-          <div className="Gameboy__soundSlot" />
-          <div className="Gameboy__soundSlot" />
-          <div className="Gameboy__soundSlot" />
-          <div className="Gameboy__soundSlot" />
         </div>
         <div className="Gameboy__phones">
           phones<div className="Gameboy__ridges"></div>
