@@ -30,6 +30,11 @@ const Gameboy = () => {
       clearTimeout(timer.current);
     }
     setOn(false);
+    setStage(0);
+  };
+  const startPress = () => {
+    if (stage === 2) {
+    }
   };
   return (
     <div className={`Gameboy${on ? " Gameboy--on" : ""}`}>

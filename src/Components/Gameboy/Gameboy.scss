@@ -586,7 +586,7 @@ $buttonBlack: #0a1d17;
   font-size: c(44);
   // color: $screenDarkGreen;
   font-weight: bold;
-  transition: top 0ms linear 300ms, opacity 100ms linear;
+  transition: top 0ms linear, opacity 100ms linear;
   opacity: 0;
   &--active {
     top: 50%;
