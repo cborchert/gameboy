@@ -1,0 +1,105 @@
+@import "../../../utils.scss";
+
+$spriteScale: 2;
+$spriteSteps: 2;
+$spriteX: 1;
+$spriteY: 0;
+
+.NameSelect {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: absolute;
+}
+
+.NameSelect__background {
+  background-image: url("../../../../images/playerName.png");
+  image-rendering: pixelated;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: absolute;
+}
+
+.NameSelect__text {
+  position: absolute;
+  color: white;
+  font-family: monospace;
+  font-size: 0;
+  box-sizing: border-box;
+  padding: c(120) c(40) 0;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(16, 1fr);
+  text-align: center;
+  .NameSelect__letter {
+    font-style: italic;
+    display: inline-block;
+    font-size: c(24);
+    line-height: 1.7;
+    position: relative;
+    &--selected:after {
+      content: "";
+      display: block;
+      height: c(4);
+      background: white;
+      position: absolute;
+      bottom: c(4);
+      left: c(2);
+      right: c(2);
+    }
+  }
+}
+
+.NameSelect__name {
+  position: absolute;
+  color: white;
+  font-family: monospace;
+  font-size: c(24);
+  box-sizing: border-box;
+  padding: c(30) c(100) 0 c(140);
+  width: 100%;
+  text-align: left;
+  .NameSelect__playerNumber {
+    display: inline-block;
+    font-size: c(24);
+    line-height: 1.2;
+    position: relative;
+    background: white;
+    color: black;
+    font-weight: bold;
+    margin: c(5) c(13) c(10) c(28);
+    vertical-align: top;
+  }
+  .NameSelect__nameLetter {
+    font-style: italic;
+    display: inline-block;
+    font-size: c(24);
+    line-height: 1.7;
+    position: relative;
+    min-width: c(20);
+    vertical-align: top;
+    &--selected:after {
+      content: "";
+      display: block;
+      height: c(4);
+      background: white;
+      position: absolute;
+      top: c(34);
+      left: c(0);
+      right: c(4);
+      animation: cursorblink linear infinite 1000ms;
+    }
+  }
+}
+
+@keyframes cursorblink {
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}

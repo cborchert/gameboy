@@ -1,0 +1,20 @@
+@import "../../../utils.scss";
+
+.LogoScreen {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: c(44);
+  font-weight: bold;
+  animation: logofall 3000ms linear forwards;
+}
+
+@keyframes logofall {
+  from {
+    top: -50%;
+  }
+  to {
+    top: 50%;
+  }
+}

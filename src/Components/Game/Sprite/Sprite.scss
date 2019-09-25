@@ -1,0 +1,16 @@
+@import "../../utils.scss";
+
+.Sprite {
+  position: absolute;
+  overflow: hidden;
+  // image-rendering: pixelated;
+  width: c(45);
+  height: c(45);
+  img {
+    width: 500%;
+    height: 500%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

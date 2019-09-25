@@ -1,0 +1,52 @@
+@import "../../../utils.scss";
+
+$spriteScale: 2;
+$spriteSteps: 2;
+$spriteX: 1;
+$spriteY: 0;
+
+.FileSelect {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.FileSelect__background {
+  background-image: url("../../../../images/playerSelect.png");
+  image-rendering: pixelated;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.FileSelect__cursor {
+  width: c(20 * $spriteScale);
+  height: c(20 * $spriteScale);
+  background-image: url("../../../../images/spritesheet.png");
+  background-size: c(500 * $spriteScale) c(100 * $spriteScale);
+  background-position: c(0) c($spriteScale);
+  animation: walking steps($spriteSteps) infinite 1000ms;
+  image-rendering: pixelated;
+  position: absolute;
+  left: c(40);
+  &--position-1 {
+    top: c(112);
+  }
+  &--position-2 {
+    top: c(175);
+  }
+  &--position-3 {
+    top: c(240);
+  }
+}
+
+@keyframes walking {
+  from {
+    background-position: c(-20 * $spriteX * $spriteScale)
+      c(-20 * $spriteScale * $spriteY);
+  }
+  to {
+    background-position: c(-20 * $spriteScale * ($spriteSteps + $spriteX))
+      c(-20 * $spriteScale * $spriteY);
+  }
+}

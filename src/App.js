@@ -1,11 +1,11 @@
 import React from "react";
-import Gameboy from "./Components/Gameboy/Gameboy";
+import GameboyContainer from "./Components/Gameboy/GameboyContainer";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Gameboy />
+      <GameboyContainer />
     </div>
   );
 }

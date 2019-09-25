@@ -1,0 +1,34 @@
+// body
+$grey: #d8d7d2;
+// $body: $grey;
+// $body: #efeff1;
+$body: #e6e6e6;
+$white: white;
+
+// screen exterior
+$darkgrey: #8b8a8f;
+$pink: #b2407e;
+$blue: #231e82;
+
+//battery light
+$batRed: #ff1343;
+$batOrange: #f7c471;
+$batPink: #ff1343;
+
+// screen interior
+$screenOrange: #8c6402;
+$screenGreen: #567e01;
+$screenMidGreen: #4c7816;
+$screenDarkGreen: #305d1a;
+
+// logo
+$nintendoBlue: #3542aa;
+
+// buttons
+$buttonPink: #a61f56;
+$buttonGrey: #828481;
+$buttonBlack: #0a1d17;
+
+@function c($value) {
+  @return $value * 90vh / 1240;
+}

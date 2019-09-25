@@ -1,6 +1,4 @@
 import React from "react";
-import TitleScreen from "../../images/title.png";
-import Sparkle from "../../images/sparkle.png";
 import "./Gameboy.scss";
 
 // Intro
@@ -13,29 +11,9 @@ import "./Gameboy.scss";
 //https://static.cnews.fr/sites/default/files/styles/image_640_360/public/nintendo_gameboy.jpg?itok=bl4SjE-k
 //Enter Code
 //https://www.youtube.com/watch?v=NYlMc638Yq0
-const Gameboy = () => {
-  const [on, setOn] = React.useState(false);
-  const [stage, setStage] = React.useState(0);
-  const timer = React.useRef(null);
-  const initGame = () => {
-    if (timer.current) {
-      clearTimeout(timer.current);
-    }
-    setOn(true);
-    setStage(1);
-    timer.current = setTimeout(() => setStage(2), 4300);
-  };
-  const turnOff = () => {
-    if (timer.current) {
-      clearTimeout(timer.current);
-    }
-    setOn(false);
-    setStage(0);
-  };
-  const startPress = () => {
-    if (stage === 2) {
-    }
-  };
+const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
+  const handleOnOff = on ? turnOff : turnOn;
+
   return (
     <div className={`Gameboy${on ? " Gameboy--on" : ""}`}>
       <div className="Gameboy__mask">
@@ -54,24 +32,14 @@ const Gameboy = () => {
           <div className="Gameboy__topNotch Gameboy__topNotch--left" />
           <div className="Gameboy__top__center">
             <div className="Gameboy__ridges"></div>
-            <div
-              className="Gameboy__onOffLabel"
-              onClick={() => {
-                on ? turnOff() : initGame();
-              }}
-            >
+            <div className="Gameboy__onOffLabel" onClick={handleOnOff}>
               &#9664; Off &#9679; On &#9658;
             </div>
           </div>
 
           <div className="Gameboy__topNotch Gameboy__topNotch--right" />
         </div>
-        <div
-          className="Gameboy__onOffSwitch"
-          onClick={() => {
-            on ? turnOff() : initGame();
-          }}
-        />
+        <div className="Gameboy__onOffSwitch" onClick={handleOnOff} />
       </div>
       <div className="Gameboy__body">
         <div className="Gameboy__screen">
@@ -84,43 +52,7 @@ const Gameboy = () => {
             <div className="Gameboy__screenDeadPixels" />
             <div className="Gameboy__screenDeadPixels" />
             <div className="Gameboy__screenDeadPixels" />
-            <div className="Gameboy__screenInner__content">
-              <div
-                className={`Gameboy__stageOne ${
-                  stage === 1 ? "Gameboy__stageOne--active" : ""
-                }`}
-              >
-                Nintendo®
-              </div>
-              <div
-                className={`Gameboy__stageTwo ${
-                  stage === 2 ? "Gameboy__stageTwo--active" : ""
-                }`}
-              >
-                <div
-                  className="sparkle sparkle--1"
-                  style={{ backgroundImage: Sparkle }}
-                />
-                <div
-                  className="sparkle sparkle--2"
-                  style={{ backgroundImage: Sparkle }}
-                />
-                <div
-                  className="sparkle sparkle--3"
-                  style={{ backgroundImage: Sparkle }}
-                />
-                <div
-                  className="sparkle sparkle--4"
-                  style={{ backgroundImage: Sparkle }}
-                />
-                <img
-                  src={TitleScreen}
-                  className="stage__background"
-                  alt="title screen"
-                />
-                <div className="Gameboy__stageTwo__pressStart">Press Start</div>
-              </div>
-            </div>
+            <div className="Gameboy__screenInner__content">{children}</div>
           </div>
 
           <div className="Gameboy__battery">
@@ -134,22 +66,34 @@ const Gameboy = () => {
         </div>
         <div className="Gameboy__controls">
           <div className="Gameboy__dpad">
-            <div className="Gameboy__dpadButton Gameboy__dpadButton--up">
+            <div
+              className="Gameboy__dpadButton Gameboy__dpadButton--up"
+              onClick={() => buttonPress("up")}
+            >
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
             </div>
-            <div className="Gameboy__dpadButton Gameboy__dpadButton--down">
+            <div
+              className="Gameboy__dpadButton Gameboy__dpadButton--down"
+              onClick={() => buttonPress("down")}
+            >
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
             </div>
-            <div className="Gameboy__dpadButton Gameboy__dpadButton--left">
+            <div
+              className="Gameboy__dpadButton Gameboy__dpadButton--left"
+              onClick={() => buttonPress("left")}
+            >
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
             </div>
-            <div className="Gameboy__dpadButton Gameboy__dpadButton--right">
+            <div
+              className="Gameboy__dpadButton Gameboy__dpadButton--right"
+              onClick={() => buttonPress("right")}
+            >
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
@@ -159,21 +103,33 @@ const Gameboy = () => {
             </div>
           </div>
           <div className="Gameboy__buttons">
-            <div className="Gameboy__button Gameboy__button--b">
+            <div
+              className="Gameboy__button Gameboy__button--b"
+              onClick={() => buttonPress("b")}
+            >
               <div className="Gameboy__buttonLabel">B</div>
             </div>
-            <div className="Gameboy__button Gameboy__button--a">
+            <div
+              className="Gameboy__button Gameboy__button--a"
+              onClick={() => buttonPress("a")}
+            >
               <div className="Gameboy__buttonLabel">A</div>
             </div>
           </div>
         </div>
         <div className="Gameboy__options">
           <div className="Gameboy__option Gameboy__option--select">
-            <div className="Gameboy__optionButton" />
+            <div
+              className="Gameboy__optionButton"
+              onClick={() => buttonPress("select")}
+            />
             <div className="Gameboy__optionLabel">select</div>
           </div>
           <div className="Gameboy__option Gameboy__option--start">
-            <div className="Gameboy__optionButton" />
+            <div
+              className="Gameboy__optionButton"
+              onClick={() => buttonPress("start")}
+            />
             <div className="Gameboy__optionLabel">start</div>
           </div>
         </div>
