@@ -12,16 +12,15 @@ import chimeAudio from "../../audio/effect-chime.mp3";
 import selectAudio from "../../audio/effect-select.mp3";
 import cursorAudio from "../../audio/effect-cursor.mp3";
 import itemAudio from "../../audio/effect-item.mp3";
+import codeMusic from "../../audio/music-code-loop.mp3";
+import selectMusic from "../../audio/music-select-loop.mp3";
+import titleLoopMusic from "../../audio/music-title-loop.mp3";
+import titleIntroMusic from "../../audio/music-title-intro.mp3";
 
 const Game = ({ on, triggerSoundEvent }) => {
   const [playerNumber, setPlayerNumber] = React.useState(1);
   const [playerName, setPlayerName] = React.useState("     ");
   const [stage, setStage] = React.useState(0);
-
-  // reset game on on/off toggle
-  React.useEffect(() => {
-    setStage(on ? 1 : 0);
-  }, [on]);
 
   // handle sounds
   const sounds = {
@@ -38,20 +37,64 @@ const Game = ({ on, triggerSoundEvent }) => {
       src: [cursorAudio]
     }),
     item: new Howl({
-      src: [itemAudio]
+      src: [itemAudio],
+      onend: () => triggerSoundEvent("itemEnded")
     })
+  };
+  const stopAllSoundEffects = () => {
+    sounds.chime.stop();
+    sounds.select.stop();
+    sounds.item.stop();
+    sounds.cursor.stop();
+  };
+
+  const music = {
+    titleIntro: new Howl({
+      src: [titleIntroMusic],
+      onend: () => triggerSoundEvent("titleIntroEnded")
+    }),
+    titleLoop: new Howl({
+      src: [titleLoopMusic],
+      loop: true
+    }),
+    codeLoop: new Howl({
+      src: [codeMusic],
+      loop: true
+    }),
+    selectLoop: new Howl({
+      src: [selectMusic],
+      loop: true
+    })
+  };
+  const stopAllMusic = () => {
+    music.titleIntro.stop();
+    music.titleLoop.stop();
+    music.codeLoop.stop();
+    music.selectLoop.stop();
   };
   React.useEffect(() => {
     const listener = e => {
       if (e && e.detail) {
         if (e.detail.key && sounds[e.detail.key]) {
+          stopAllSoundEffects();
           sounds[e.detail.key].play();
         }
       }
     };
     window.addEventListener("gb_soundEvent", listener);
     return () => window.removeEventListener("gb_soundEvent", listener);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // reset game on on/off toggle
+  React.useEffect(() => {
+    setStage(on ? 1 : 0);
+    if (!on) {
+      stopAllMusic();
+      stopAllSoundEffects();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [on]);
 
   if (!on) return null;
 
@@ -76,6 +119,13 @@ const Game = ({ on, triggerSoundEvent }) => {
           select={() => {
             triggerSoundEvent("select");
           }}
+          startIntro={() => {
+            music.titleIntro.play();
+          }}
+          startLoop={() => {
+            music.titleLoop.play();
+          }}
+          stopAllMusic={stopAllMusic}
         />
       );
     case 3:
@@ -91,6 +141,10 @@ const Game = ({ on, triggerSoundEvent }) => {
           cursor={() => {
             triggerSoundEvent("cursor");
           }}
+          startLoop={() => {
+            music.selectLoop.play();
+          }}
+          stopAllMusic={stopAllMusic}
         />
       );
     case 4:
@@ -106,6 +160,10 @@ const Game = ({ on, triggerSoundEvent }) => {
           cursor={() => {
             triggerSoundEvent("cursor");
           }}
+          startLoop={() => {
+            music.selectLoop.play();
+          }}
+          stopAllMusic={stopAllMusic}
           playerNumber={playerNumber}
         />
       );
@@ -121,6 +179,8 @@ const Game = ({ on, triggerSoundEvent }) => {
             triggerSoundEvent("item");
           }}
           playerName={playerName}
+          startLoop={() => music.codeLoop.play()}
+          stopAllMusic={stopAllMusic}
         />
       );
     default:

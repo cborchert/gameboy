@@ -5,8 +5,8 @@ const LogoScreen = ({ next, chime }) => {
   const logoTimer = React.useRef(null);
   const chimeTimer = React.useRef(null);
   React.useEffect(() => {
-    logoTimer.current = setTimeout(next, 4300);
-    chimeTimer.current = setTimeout(chime, 3000);
+    logoTimer.current = setTimeout(next, 5500);
+    chimeTimer.current = setTimeout(chime, 2800);
     return () => {
       logoTimer.current && clearTimeout(logoTimer.current);
       chimeTimer.current && clearTimeout(chimeTimer.current);

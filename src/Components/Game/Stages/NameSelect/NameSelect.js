@@ -68,12 +68,18 @@ const letters = [
   " "
 ];
 
-const NameSelect = ({ next, playerNumber, select, cursor }) => {
+const NameSelect = ({
+  next,
+  playerNumber,
+  select,
+  cursor,
+  startLoop,
+  stopAllMusic
+}) => {
   const [name, setName] = React.useState("     ");
   const [selectedABCIndex, setSelectedABCIndex] = React.useState(0);
   const [selectedNameIndex, setSelectedNameIndex] = React.useState(0);
 
-  console.log(name, selectedABCIndex, selectedNameIndex);
   // handle key presses
   React.useEffect(() => {
     const listener = e => {
@@ -134,6 +140,13 @@ const NameSelect = ({ next, playerNumber, select, cursor }) => {
     return () => window.removeEventListener("gb_keypress", listener);
   }, [cursor, name, next, select, selectedABCIndex, selectedNameIndex]);
 
+  // handle music
+  React.useEffect(() => {
+    stopAllMusic();
+    startLoop();
+    return () => stopAllMusic();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="NameSelect">
       <div className="NameSelect__background" />

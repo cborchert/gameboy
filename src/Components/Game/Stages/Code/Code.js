@@ -2,10 +2,20 @@ import React from "react";
 import { decrypt } from "./vigenere";
 import "./Code.scss";
 
-const Code = ({ next, playerName, item }) => {
-  // item sound on load
+const Code = ({ next, playerName, item, startLoop, stopAllMusic }) => {
+  // item sound && music on load
   React.useEffect(() => {
     item();
+    const listener = e => {
+      if (e && e.detail && e.detail.key === "itemEnded") {
+        startLoop();
+      }
+    };
+    window.addEventListener("gb_soundEvent", listener);
+    return () => {
+      stopAllMusic();
+      window.removeEventListener("gb_soundEvent", listener);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -18,7 +28,8 @@ const Code = ({ next, playerName, item }) => {
     };
     window.addEventListener("gb_keypress", listener);
     return () => window.removeEventListener("gb_keypress", listener);
-  }, [next]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // TODO: Obviously, we won't include the key ot the original code anywhere in this text... or even commit it
   // const coded = encrypt("YOUR-SWITCH-DOWNLOAD-CODE", "demo ");

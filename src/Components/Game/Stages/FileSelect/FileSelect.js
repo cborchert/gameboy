@@ -1,7 +1,7 @@
 import React from "react";
 import "./FileSelect.scss";
 
-const FileSelect = ({ next, select, cursor }) => {
+const FileSelect = ({ next, select, cursor, stopAllMusic, startLoop }) => {
   const [position, setPosition] = React.useState(1);
   // handle key presses
   React.useEffect(() => {
@@ -31,8 +31,16 @@ const FileSelect = ({ next, select, cursor }) => {
     };
     window.addEventListener("gb_keypress", listener);
     return () => window.removeEventListener("gb_keypress", listener);
-  }, [cursor, next, position, select]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  // handle music
+  React.useEffect(() => {
+    stopAllMusic();
+    startLoop();
+    return ()=>stopAllMusic();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="FileSelect">
       <div className="FileSelect__background" />
