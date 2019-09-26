@@ -4,23 +4,27 @@ import Game from "../Game/Game";
 
 const GameboyContainer = props => {
   const [on, setOn] = React.useState(false);
-  const [stage, setStage] = React.useState(0);
+
+  const buttonPress = key => {
+    if (!window || !CustomEvent || !window.dispatchEvent) return;
+    window.dispatchEvent(new CustomEvent("gb_keypress", { detail: { key } }));
+  };
+
+  const triggerSoundEvent = key => {
+    if (!window || !CustomEvent || !window.dispatchEvent) return;
+    window.dispatchEvent(new CustomEvent("gb_soundEvent", { detail: { key } }));
+  };
 
   const initGame = () => {
+    triggerSoundEvent("click");
     setOn(true);
-    setStage(1);
   };
 
   const turnOn = initGame;
 
   const turnOff = () => {
+    triggerSoundEvent("click");
     setOn(false);
-    setStage(0);
-  };
-
-  const buttonPress = key => {
-    if (!window || !CustomEvent || !window.dispatchEvent) return;
-    window.dispatchEvent(new CustomEvent("gb_keypress", { detail: { key } }));
   };
 
   return (
@@ -29,8 +33,9 @@ const GameboyContainer = props => {
       turnOn={turnOn}
       turnOff={turnOff}
       on={on}
+      triggerSoundEvent={triggerSoundEvent}
     >
-      <Game on={on} stage={stage} setStage={setStage} />
+      <Game on={on} triggerSoundEvent={triggerSoundEvent} />
     </Gameboy>
   );
 };

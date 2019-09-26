@@ -2,12 +2,15 @@ import React from "react";
 // import Sprite from "../../Sprite/Sprite";
 import "./TitleScreen.scss";
 
-const TitleScreen = ({ next }) => {
+const TitleScreen = ({ next, select }) => {
   // handle key presses
   React.useEffect(() => {
     const listener = e => {
       if (e && e.detail) {
-        if (e.detail.key === "start") next();
+        if (e.detail.key === "start") {
+          select();
+          next();
+        }
       }
     };
     window.addEventListener("gb_keypress", listener);

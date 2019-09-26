@@ -68,7 +68,7 @@ const letters = [
   " "
 ];
 
-const NameSelect = ({ next, playerNumber }) => {
+const NameSelect = ({ next, playerNumber, select, cursor }) => {
   const [name, setName] = React.useState("     ");
   const [selectedABCIndex, setSelectedABCIndex] = React.useState(0);
   const [selectedNameIndex, setSelectedNameIndex] = React.useState(0);
@@ -78,8 +78,12 @@ const NameSelect = ({ next, playerNumber }) => {
   React.useEffect(() => {
     const listener = e => {
       if (e && e.detail) {
-        if (e.detail.key === "start") next(name);
+        if (e.detail.key === "start") {
+          select();
+          next(name);
+        }
         if (e.detail.key === "a") {
+          select();
           setName(prevName => {
             const newName = prevName
               .split("")
@@ -93,33 +97,42 @@ const NameSelect = ({ next, playerNumber }) => {
           }
         }
         if (e.detail.key === "b") {
+          cursor();
           if (selectedNameIndex > 0) {
             setSelectedNameIndex(previ => previ - 1);
           }
         }
-        if (e.detail.key === "up")
+        if (e.detail.key === "up") {
+          cursor();
           setSelectedABCIndex(previ =>
             previ - 16 < 0 ? letters.length + previ - 16 : previ - 16
           );
-        if (e.detail.key === "down")
+        }
+        if (e.detail.key === "down") {
+          cursor();
           setSelectedABCIndex(previ =>
             previ + 16 >= letters.length
               ? previ + 16 - letters.length
               : previ + 16
           );
-        if (e.detail.key === "left")
+        }
+        if (e.detail.key === "left") {
+          cursor();
           setSelectedABCIndex(previ =>
             previ - 1 < 0 ? letters.length - 1 : previ - 1
           );
-        if (e.detail.key === "right")
+        }
+        if (e.detail.key === "right") {
+          cursor();
           setSelectedABCIndex(previ =>
             previ + 1 >= letters.length ? 0 : previ + 1
           );
+        }
       }
     };
     window.addEventListener("gb_keypress", listener);
     return () => window.removeEventListener("gb_keypress", listener);
-  }, [name, next, selectedABCIndex, selectedNameIndex]);
+  }, [cursor, name, next, select, selectedABCIndex, selectedNameIndex]);
 
   return (
     <div className="NameSelect">
