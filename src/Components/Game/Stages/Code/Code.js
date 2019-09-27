@@ -42,6 +42,13 @@ const Code = ({ next, playerName, item, startLoop, stopAllMusic }) => {
     message = <>Casse-toi, tu pues, et marche à l'ombre !</>;
   } else if (playerName.toLowerCase() === "zelda") {
     message = <>Ha ha ha, very funny...</>;
+  } else if (playerName.toLowerCase() === "quinn") {
+    message = (
+      <>
+        A WILD QUON APPEARS... <br />
+        PREPARE FOR COMBAT!
+      </>
+    );
   } else if (playerName.toLowerCase().trim() === "link") {
     message = <>Soooo original</>;
   } else {
