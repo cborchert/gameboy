@@ -36,7 +36,7 @@ const Code = ({ next, playerName, item, startLoop, stopAllMusic }) => {
   let message = "";
   if (playerName.toLowerCase() === "david") {
     message = <>Don't put in your real name... Try again</>;
-  } else if (playerName.toLowerCase() === "axel") {
+  } else if (playerName.toLowerCase().trim() === "axel") {
     message = <>Cou cou, Axel.</>;
   } else if (playerName.toLowerCase() === "kevin") {
     message = <>Casse-toi, tu pues, et marche à l'ombre !</>;
