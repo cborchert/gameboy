@@ -42,7 +42,7 @@ const Code = ({ next, playerName, item, startLoop, stopAllMusic }) => {
     message = <>Casse-toi, tu pues, et marche à l'ombre !</>;
   } else if (playerName.toLowerCase() === "zelda") {
     message = <>Ha ha ha, very funny...</>;
-  } else if (playerName.toLowerCase() === "link") {
+  } else if (playerName.toLowerCase().trim() === "link") {
     message = <>Soooo original</>;
   } else {
     message = (
