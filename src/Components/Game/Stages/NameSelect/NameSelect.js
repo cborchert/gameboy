@@ -154,6 +154,7 @@ const NameSelect = ({
         <span className="NameSelect__playerNumber">{playerNumber}</span>
         {name.split("").map((char, i) => (
           <div
+            key={`${char}-${i}`}
             className={`NameSelect__nameLetter ${
               i === selectedNameIndex ? "NameSelect__nameLetter--selected" : ""
             }`}

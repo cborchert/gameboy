@@ -23,7 +23,7 @@
       right: c(-100);
       width: c(420);
       height: c(120);
-      background: rgba(white, 0.3);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), transparent);
       transform: rotateZ(-35deg);
       z-index: 1;
       box-shadow: c(-6) c(-6) c(10) rgba(white, 1) inset;
@@ -340,12 +340,16 @@
   }
   .Gameboy__buttonLabel {
     position: absolute;
-    top: c(90) + c(28);
+    // top: c(90) + c(28);
+    top: c(90) + c(24);
     left: 50%;
     transform: translateX(-50%);
-    font-weight: bold;
+    // font-weight: bold;
     color: $nintendoBlue;
-    font-size: c(26);
+    font-size: c(34);
+    font-family: "Controller", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 }
 
@@ -381,13 +385,18 @@
   }
   .Gameboy__optionLabel {
     position: absolute;
-    top: c(50) + c(8);
+    // top: c(50) + c(8);
+    top: c(50) + c(4);
     color: $nintendoBlue;
-    font-size: c(26);
+    font-size: c(32);
+    letter-spacing: c(1);
     text-transform: uppercase;
-    font-weight: bold;
+    // font-weight: bold;
     left: 50%;
     transform: translateX(-50%);
+    font-family: "Controller", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 }
 

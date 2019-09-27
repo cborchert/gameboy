@@ -3,6 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import "./fonts/bittyspacemono.otf";
+import "./fonts/bittyspacemono.woff";
+import "./fonts/NES_Controller_cad.ttf";
+import "./fonts/NES_Controller.ttf";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

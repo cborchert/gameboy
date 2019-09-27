@@ -24,7 +24,7 @@ $spriteY: 0;
 .NameSelect__text {
   position: absolute;
   color: white;
-  font-family: monospace;
+  font-family: "Bitty", monospace;
   font-size: 0;
   box-sizing: border-box;
   padding: c(120) c(40) 0;
@@ -33,10 +33,12 @@ $spriteY: 0;
   grid-template-columns: repeat(16, 1fr);
   text-align: center;
   .NameSelect__letter {
+    text-align: center;
     font-style: italic;
     display: inline-block;
-    font-size: c(24);
-    line-height: 1.7;
+    font-size: c(16);
+    // font-size: c(24);
+    line-height: 2;
     position: relative;
     &--selected:after {
       content: "";
@@ -44,8 +46,8 @@ $spriteY: 0;
       height: c(4);
       background: white;
       position: absolute;
-      bottom: c(4);
-      left: c(2);
+      bottom: c(1);
+      left: c(0);
       right: c(2);
     }
   }
@@ -54,28 +56,29 @@ $spriteY: 0;
 .NameSelect__name {
   position: absolute;
   color: white;
-  font-family: monospace;
-  font-size: c(24);
+  font-family: "Bitty", monospace;
+  font-size: c(18);
   box-sizing: border-box;
-  padding: c(30) c(100) 0 c(140);
+  padding: c(36) c(100) 0 c(135);
   width: 100%;
   text-align: left;
   .NameSelect__playerNumber {
     display: inline-block;
-    font-size: c(24);
+    font-size: c(18);
     line-height: 1.2;
     position: relative;
     background: white;
     color: black;
     font-weight: bold;
-    margin: c(5) c(13) c(10) c(28);
+    padding: c(2);
+    margin: c(2) c(8) c(10) c(28);
     vertical-align: top;
   }
   .NameSelect__nameLetter {
     font-style: italic;
     display: inline-block;
-    font-size: c(24);
-    line-height: 1.7;
+    font-size: c(18);
+    line-height: 2;
     position: relative;
     min-width: c(20);
     vertical-align: top;
@@ -85,7 +88,7 @@ $spriteY: 0;
       height: c(4);
       background: white;
       position: absolute;
-      top: c(34);
+      top: c(26);
       left: c(0);
       right: c(4);
       animation: cursorblink linear infinite 1000ms;

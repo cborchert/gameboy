@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: "Controller";
+  src: local("Nes Controller"),
+    url(./fonts/NES_Controller.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Bitty";
+  src: local("Bittypix Monospace"),
+    url(./fonts/bittyspacemono.woff) format("woff"),
+    url(./fonts/bittyspacemono.otf) format("otf");
+}

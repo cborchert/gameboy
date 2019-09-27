@@ -31,9 +31,7 @@ const Code = ({ next, playerName, item, startLoop, stopAllMusic }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // TODO: Obviously, we won't include the key ot the original code anywhere in this text... or even commit it
-  // const coded = encrypt("YOUR-SWITCH-DOWNLOAD-CODE", "demo ");
-  const coded = "1S65/V0U7BKcP2VQP0OCbG0RD";
+  const coded = "334qCnFGJ8.SYB0n";
   return (
     <div className="Code">
       <div className="Code__background" />
