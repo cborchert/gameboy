@@ -146,8 +146,8 @@
     background: $darkgrey;
     position: absolute;
     top: c(-13);
-    left: c(100);
-    transition: 50ms;
+    left: c(90);
+    transition: 100ms;
     border-radius: c(10) c(10) 0 0;
     box-shadow: c(-2) c(-2) c(2) rgba(black, 0.1) inset;
     &:before {
@@ -434,7 +434,7 @@
   text-transform: uppercase;
   text-shadow: c(-2) c(-2) c(2) rgba(0, 0, 0, 0.1);
   position: absolute;
-  bottom: c(14);
+  bottom: c(16);
   left: 50%;
   transform: translateX(-50%);
   box-shadow: c(4) c(4) c(10) rgba(white, 0.2) inset,
@@ -457,57 +457,41 @@
 .Gameboy__dpadButton--up {
   transform: translateX(-50%) translateY(-145%);
   border-radius: c(8) c(8) 0 0;
-  &:before {
-    content: "\25B2";
+  .Gameboy__triangle {
     position: absolute;
     left: 50%;
-    top: c(-30);
+    top: c(-26);
     transform: translateX(-50%);
-    font-size: c(24);
-    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
-    color: $body;
   }
 }
 .Gameboy__dpadButton--down {
   transform: translateX(-50%) translateY(45%);
   border-radius: 0 0 c(8) c(8);
-  &:before {
-    content: "\25BC";
+  .Gameboy__triangle {
     position: absolute;
     left: 50%;
-    bottom: c(-30);
+    bottom: c(-26);
     transform: translateX(-50%);
-    font-size: c(24);
-    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
-    color: $body;
   }
 }
 .Gameboy__dpadButton--left {
   transform: translateX(-145%) translateY(-50%);
   border-radius: c(8) 0 c(8) 0;
-  &:before {
-    content: "\25C0";
+  .Gameboy__triangle {
     position: absolute;
     top: 50%;
     left: c(-26);
     transform: translateY(-50%);
-    font-size: c(24);
-    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
-    color: $body;
   }
 }
 .Gameboy__dpadButton--right {
   transform: translateX(45%) translateY(-50%);
   border-radius: 0 c(8) c(8) 0;
-  &:before {
-    content: "\25BA";
+  .Gameboy__triangle {
     position: absolute;
     top: 50%;
     right: c(-26);
     transform: translateY(-50%);
-    font-size: c(24);
-    text-shadow: c(2) c(2) c(2) rgba(0, 0, 0, 0.1);
-    color: $body;
   }
 }
 
@@ -548,10 +532,40 @@
   opacity: 0.2;
 }
 
+.Gameboy__screen__lines {
+  height: c(2);
+  background: black;
+  top: 37%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  transition: 100ms;
+  width: 0%;
+  opacity: 0;
+}
+.Gameboy__screen__bg {
+  position: absolute;
+  top: c(6);
+  left: c(6);
+  right: c(6);
+  bottom: c(6);
+  background: black;
+  box-shadow: 0 0 c(10) rgba(black, 1);
+  transition: 60ms linear 200ms;
+  opacity: 0;
+}
+
 .Gameboy--on {
+  .Gameboy__screen__lines {
+    animation: lineonoff linear 600ms forwards;
+  }
+  .Gameboy__screen__bg {
+    opacity: 0.1;
+    transition: 200ms;
+  }
   .Gameboy__top {
     .Gameboy__onOffSwitch {
-      transform: translateX(c(14));
+      left: c(120);
     }
   }
   .Gameboy__body {
@@ -582,4 +596,61 @@
   to {
     box-shadow: 0 0 c(10) lighten($batRed, 18%);
   }
+}
+
+@keyframes lineonoff {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  2% {
+    width: 50%;
+    opacity: 1;
+  }
+  4%,
+  90% {
+    width: 100%;
+    opacity: 1;
+  }
+  95% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+$triangleInactive: c(8) solid transparent;
+$triangleActive: c(16) solid $body;
+$triangleShadowActive: c(16) solid rgba(0, 0, 0, 0.1);
+
+.Gameboy__triangle {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: $triangleInactive;
+  position: relative;
+  &--up {
+    border-top: none;
+    border-bottom: $triangleActive;
+  }
+  &--down {
+    border-bottom: none;
+    border-top: $triangleActive;
+  }
+  &--right {
+    border-right: none;
+    border-left: $triangleActive;
+  }
+  &--left {
+    border-left: none;
+    border-right: $triangleActive;
+  }
+}
+
+.Gameboy__circle {
+  width: c(16);
+  height: c(16);
+  display: inline-block;
+  background: $body;
+  border-radius: c(10);
+  margin: 0 c(6);
 }

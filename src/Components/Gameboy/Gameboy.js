@@ -33,7 +33,9 @@ const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
           <div className="Gameboy__top__center">
             <div className="Gameboy__ridges"></div>
             <div className="Gameboy__onOffLabel" onClick={handleOnOff}>
-              &#9664; Off &#9679; On &#9658;
+              <span className="Gameboy__triangle Gameboy__triangle--left" /> Off
+              <span className="Gameboy__circle" /> On{" "}
+              <span className="Gameboy__triangle Gameboy__triangle--right" />
             </div>
           </div>
 
@@ -49,6 +51,8 @@ const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
             </div>
           </div>
           <div className="Gameboy__screenInner">
+            <div className="Gameboy__screen__lines"></div>
+            <div className="Gameboy__screen__bg"></div>
             <div className="Gameboy__screenDeadPixels" />
             <div className="Gameboy__screenDeadPixels" />
             <div className="Gameboy__screenDeadPixels" />
@@ -73,6 +77,7 @@ const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
+              <span className="Gameboy__triangle Gameboy__triangle--up" />
             </div>
             <div
               className="Gameboy__dpadButton Gameboy__dpadButton--down"
@@ -81,6 +86,7 @@ const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
+              <span className="Gameboy__triangle Gameboy__triangle--down" />
             </div>
             <div
               className="Gameboy__dpadButton Gameboy__dpadButton--left"
@@ -89,6 +95,7 @@ const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
+              <span className="Gameboy__triangle Gameboy__triangle--left" />
             </div>
             <div
               className="Gameboy__dpadButton Gameboy__dpadButton--right"
@@ -97,6 +104,7 @@ const Gameboy = ({ on, turnOff, turnOn, buttonPress, children }) => {
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
               <div className="Gameboy__dpad__bump"></div>
+              <span className="Gameboy__triangle Gameboy__triangle--right" />
             </div>
             <div className="Gameboy__dpadButton Gameboy__dpadButton--center">
               <div className="Gameboy__dpad__divet" />
