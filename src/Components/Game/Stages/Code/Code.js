@@ -32,16 +32,34 @@ const Code = ({ next, playerName, item, startLoop, stopAllMusic }) => {
   }, []);
 
   const coded = "334qCnFGJ8.SYB0n";
-  return (
-    <div className="Code">
-      <div className="Code__background" />
-      <div className="Code__Link" />
-      <div className="Code__Text">
+
+  let message = "";
+  if (playerName.toLowerCase() === "david") {
+    message = <>Don't put in your real name... Try again</>;
+  } else if (playerName.toLowerCase() === "axel") {
+    message = <>Cou cou, Axel.</>;
+  } else if (playerName.toLowerCase() === "kevin") {
+    message = <>Casse-toi, tu pues, et marche à l'ombre !</>;
+  } else if (playerName.toLowerCase() === "zelda") {
+    message = <>Ha ha ha, very funny...</>;
+  } else if (playerName.toLowerCase() === "link") {
+    message = <>Soooo original</>;
+  } else {
+    message = (
+      <>
+        {" "}
         At last, you got the SWITCH DOWNLOAD CODE! I wonder what it does...
         <br />
         <br />
         {decrypt(coded, playerName)}
-      </div>
+      </>
+    );
+  }
+  return (
+    <div className="Code">
+      <div className="Code__background" />
+      <div className="Code__Link" />
+      <div className="Code__Text">{message}</div>
     </div>
   );
 };
